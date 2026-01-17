@@ -1,0 +1,121 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: lightskyblue; /* ✅ solid background */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+  border-radius: 10px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+  transform: scale(1.05);
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signin {
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #333;
+}
+
+.signup {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+/* Middle text (animated) */
+.middle-text {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  animation: rainbow 2s linear infinite;
+}
+
+/* Zoom-in and out scale animations */
+.zoom-in {
+  animation: zoomIn 2s ease-in-out infinite, rainbow 2s linear infinite;
+}
+
+.zoom-out {
+  animation: zoomOut 2s ease-in-out infinite, rainbow 2s linear infinite;
+}
+
+@keyframes zoomIn {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+@keyframes zoomOut {
+  0% { transform: scale(1.2); opacity: 1; }
+  50% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Rainbow color animation */
+@keyframes rainbow {
+  0% { color: red; }
+  15% { color: orange; }
+  30% { color: yellow; }
+  45% { color: green; }
+  60% { color: blue; }
+  75% { color: indigo; }
+  90% { color: violet; }
+  100% { color: red; }
+}
+
+/* Responsive navbar */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .auth-buttons {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+.btn.get-started {background: linear-gradient(135deg, #00c853, #00e676); color: #fff; font-size: 16px; font-weight: 700; box-shadow: 0 4px 10px rgba(0, 200, 83, 0.4);}
+.btn.get-started:hover {background: linear-gradient(135deg, #00b34d, #00d167); transform: translateY(-2px) scale(1.05);}

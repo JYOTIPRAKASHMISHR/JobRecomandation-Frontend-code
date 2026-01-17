@@ -1,0 +1,53 @@
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* App background */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #ffffff 0%, #1a1a1a 70%);
+  min-height: 100vh;
+}
+
+.app-container {
+  width: 100%;
+}
+
+/* Main section */
+main {
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card layout */
+.card {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* 2D hover animation */
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Resume Card specific styling */
+.resume-card h1 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.resume-card p {
+  font-size: 1.1rem;
+  color: #666;
+}

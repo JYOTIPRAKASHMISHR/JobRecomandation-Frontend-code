@@ -1,0 +1,317 @@
+/* CandidateDashboard.css */
+
+/* ========== Animations ========== */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ========== Main container ========== */
+/* ========== Dashboard Container (Full Background Image) ========== */
+.dashboard-container {
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeInUp 0.8s ease-in-out both;
+
+  /* Full-page background */
+  background: url('src/assets/companyinside.png') center/cover no-repeat;
+}
+
+/* ========== Dashboard Container with overlay ========== */
+.dashboard-container {
+  position: relative;
+  display: flex;
+  justify-content: center;   /* center horizontally */
+  align-items: center;       /* center vertically */
+  min-height: 100vh;         /* full viewport height */
+  overflow: hidden;
+}
+
+.dashboard-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.409); /* light overlay */
+  z-index: 0;
+}
+
+/* ========== Hero Section ========== */
+.hero-section {
+  position: relative;        /* sits above overlay */
+  z-index: 1;                /* ensures it's visible */
+  max-width: 900px;          /* optional: content width */
+  padding: 40px 20px;        /* spacing */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInUp 1s ease-in-out both;
+}
+
+
+
+.hero-title,
+.hero-description,
+.hero-buttons {
+  z-index: 2;
+  position: relative;
+  color: #1a1a1a; /* keep same text color */
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.hero-description {
+  font-size: 18px;
+  max-width: 600px;
+  color: #555555;
+  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  animation: fadeInUp 0.8s ease 0.6s both;
+}
+
+/* ========== Buttons ========== */
+.analyze-button,
+.find-jobs-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.analyze-button {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+}
+
+.analyze-button:hover {
+  background-color: #1e40af;
+  transform: scale(1.05);
+}
+
+.find-jobs-button {
+  background-color: #ffffff;
+  color: #333333;
+  border: 1px solid #cccccc;
+}
+
+.find-jobs-button:hover {
+  border-color: #777777;
+  color: #000000;
+  transform: scale(1.05);
+}
+
+
+/* ========== Job Listings ========== */
+.job-listings {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  animation: fadeInUp 0.6s ease-in-out both;
+}
+
+/* ========== AI Features Section ========== */
+.ai-features {
+  padding: 60px 20px;
+  background-color: #f9fbfc;
+  text-align: center;
+  animation: fadeInUp 0.8s ease-in-out both;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 40px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  transition: transform 0.3s ease;
+  animation: popIn 0.7s ease-in-out both;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.feature-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.feature-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.feature-description {
+  font-size: 16px;
+  color: #4b5563;
+}
+
+/* ========== Statistics Section ========== */
+.stats-section {
+  background-color: #2563eb;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  animation: fadeInUp 0.8s ease both;
+}
+
+.stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: scale(1.05);
+}
+
+.stat-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 16px;
+  color: #131314;
+  font-weight: bold;
+}
+
+/* ========== CTA Section ========== */
+.cta-section {
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  animation: zoomIn 1s ease-in-out both;
+}
+
+.cta-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.cta-subtitle {
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  background-color: white;
+  color: #2563eb;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.95;
+}
+
+.cta-btn.secondary {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.cta-btn.secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

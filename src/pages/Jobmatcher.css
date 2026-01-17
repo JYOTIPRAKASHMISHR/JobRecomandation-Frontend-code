@@ -1,0 +1,33 @@
+/* 🌐 Base Styling */ body { font-family:"Inter",sans-serif; background-color:#f4f6fa; margin:0; color:#2c3e50; } .jobmatcher-container { width:100%; min-height:100vh; }
+
+/* 🏠 Dashboard Layout */ .dashboard { display:flex; justify-content:center; align-items:flex-start; width:100%; padding:30px 40px; background-color:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.05); box-sizing:border-box; } .main { flex:1; max-width:1100px; width:100%; }
+
+/* 🧭 Headings */ .main h2 { font-size:1.9rem; font-weight:700; color:#0d47a1; margin-bottom:8px; } .subtitle { color:#6c757d; font-size:1rem; margin-bottom:20px; } .count { margin-top:10px; font-weight:600; color:#495057; }
+
+/* 🔍 Filter Bar */ .filter-bar { background:#fff; padding:14px 18px; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,0.05); margin:20px 0; display:flex; align-items:center; gap:12px; flex-wrap:wrap; width:100%; max-width:1100px; } .search-box { flex:1; padding:10px 12px; border:1px solid #dce1f1; border-radius:8px; outline:none; font-size:0.95rem; transition:border-color 0.3s ease; } .search-box:focus { border-color:#1976d2; } .filter-toggle-btn { background:#1976d2; color:#fff; border:none; padding:9px 16px; border-radius:8px; font-size:0.9rem; font-weight:500; cursor:pointer; transition:all 0.3s ease; } .filter-toggle-btn:hover { background:#1565c0; transform:translateY(-1px); }
+
+/* 🧩 Dropdown Filters */ .filters { display:none; flex-direction:column; gap:8px; width:100%; margin-top:8px; } .filters.show { display:flex; } .filters select { padding:9px 12px; border-radius:8px; border:1px solid #dce1f1; background:#f8f9fb; cursor:pointer; color:#333; font-size:0.9rem; transition:all 0.3s ease; } .filters select:hover { background:#e3f2fd; border-color:#90caf9; } .filters select:focus { border-color:#1976d2; }
+
+/* 💼 Job Grid */ .job-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:18px; margin-top:10px; }
+
+/* 🧾 Job Card */ .job-card { background:#fff; padding:20px; border-radius:16px; box-shadow:0 3px 10px rgba(0,0,0,0.05); transition:all 0.25s ease; border:1px solid #e8edf5; display:flex; flex-direction:column; gap:10px; overflow:hidden; min-height:180px; } .job-card:hover { transform:translateY(-4px); box-shadow:0 6px 18px rgba(25,118,210,0.12); border-color:#cfdaf5; }
+
+/* 📄 Job Header */ .job-header { display:flex; justify-content:space-between; align-items:center; } .job-header h3 { color:#0d47a1; font-size:1.1rem; font-weight:700; margin:0; } .job-type { background:#e3f2fd; color:#0d47a1; padding:4px 9px; border-radius:6px; font-size:0.78rem; font-weight:600; }
+
+/* 🏢 Company & Details */ .company-name { color:#546e7a; font-size:0.9rem; font-weight:500; } .job-location { color:#607d8b; font-size:0.88rem; } .posted-date { color:#757575; font-size:0.8rem; font-style:italic; display:inline-block; }
+
+/* 📜 Job Description */ .job-description { color:#455a64; font-size:0.88rem; line-height:1.45; margin-top:4px; max-height:60px; overflow:hidden; text-overflow:ellipsis; }
+
+/* 🧩 Meta Info */ .job-meta { display:flex; justify-content:space-between; align-items:center; font-size:0.88rem; color:#2c3e50; font-weight:500; }
+
+/* 🧠 Skills */ .job-skills { margin-top:6px; display:flex; flex-wrap:wrap; gap:6px; } .skill-tag { background:#e3f2fd; color:#1565c0; padding:5px 12px; border-radius:16px; font-size:0.78rem; font-weight:500; transition:all 0.25s ease; } .skill-tag:hover { background:#1565c0; color:#fff; transform:scale(1.05); }
+
+/* 🔍 Match Similarity */ .similarity { font-size:0.85rem; color:#1b5e20; font-weight:600; }
+
+/* ⚙️ Footer Row */ .card-footer { margin-top:4px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #edf2f7; padding-top:8px; }
+
+/* 🟦 Apply Button */ .apply-btn { background:linear-gradient(135deg,#42a5f5,#1976d2); color:#fff; border:none; border-radius:20px; padding:8px 18px; font-size:0.9rem; font-weight:600; cursor:pointer; transition:all 0.3s ease; box-shadow:0 3px 8px rgba(25,118,210,0.2); margin-left:auto; } .apply-btn:hover { background:linear-gradient(135deg,#1976d2,#0d47a1); transform:translateY(-2px) scale(1.04); box-shadow:0 5px 12px rgba(25,118,210,0.3); }
+
+/* 📅 Date + Button Inline */ .date-btn-wrapper { display:flex; justify-content:space-between; align-items:center; width:100%; }
+
+/* 📱 Responsive */ @media(max-width:768px){.dashboard{padding:16px;}.main{width:100%;}.filter-bar{flex-direction:column;align-items:stretch;}.job-grid{grid-template-columns:1fr;}.job-card{padding:18px;min-height:auto;}.apply-btn{width:auto;font-size:1rem;padding:10px 20px;margin-left:auto;}}

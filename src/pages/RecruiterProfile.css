@@ -1,0 +1,378 @@
+  /* ------------ Layout ------------ */
+  .recruiter-profile {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    background: #171717; /* dark background */
+    font-family: "Poppins", sans-serif;
+    color: #fff; /* default text color */
+  }
+/* ------------ Dashboard container ------------ */
+.dashboard-container {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  padding: 20px;
+  gap: 20px;
+  box-sizing: border-box;
+  min-height: calc(100vh - 70px);
+  align-items: flex-start; /* 👈 ensures sidebar + main start at top */
+}
+
+/* ------------ Sidebar ------------ */
+.sidebar {
+  width: 320px;
+  background: linear-gradient(180deg, #0d0d0d, #1a1a1a); /* smooth dark gradient */
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
+  animation: slideFromLeft 0.8s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  margin-top: 19px;   /* 👈 start 19px below top */
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+
+  /* Sidebar glowing left border */
+  .sidebar::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #0077ff, #00c6ff, #0077ff);
+    animation: glowLine 3s linear infinite;
+    border-radius: 4px;
+  }
+
+  /* Sidebar Title */
+  .sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #4da6ff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  .sidebar-title::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 40%;
+    margin-top: 6px;
+    background: linear-gradient(90deg, #4da6ff, transparent);
+    border-radius: 2px;
+  }
+
+  /* Candidate List */
+  .candidate-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .candidate-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 14px 16px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .candidate-list li:hover {
+    transform: translateX(6px) scale(1.02);
+    background: linear-gradient(135deg, #4da6ff33, #4da6ff11);
+    box-shadow: 0 4px 10px rgba(77, 166, 255, 0.3);
+  }
+
+  /* Candidate Avatar */
+  .avatar {
+    background: linear-gradient(135deg, #4da6ff, #0055cc);
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Candidate Info */
+  .candidate-name {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .candidate-role {
+    font-size: 0.8rem;
+    color: #bbbbbb;
+  }
+
+  .score {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #4da6ff;
+  }
+
+  /* Saved Searches */
+  .search-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .search-list li:hover {
+    background: linear-gradient(135deg, #4da6ff33, #4da6ff11);
+    transform: translateX(6px);
+  }
+
+  /* Small glowing dots for items */
+  .candidate-list li::before,
+  .search-list li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4da6ff;
+    margin-right: 10px;
+    box-shadow: 0 0 6px #4da6ff;
+  }
+
+  /* ------------ Main Dashboard ------------ */
+  .main-dashboard {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    color: #000; /* ensure text is visible on white */
+    animation: slideFromBottom 0.9s ease-in-out;
+  }
+
+  /* ------------ Welcome Card ------------ */
+  .welcome-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #0077ff, #00c6ff);
+    color: white;
+    height: 76px;
+    width: 100%;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 119, 255, 0.3);
+    animation: slideFromTop 0.8s ease-in-out;
+  }
+
+  .welcome-text h1 {
+    font-size: 1.7rem;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .welcome-icon {
+    font-size: 1.7rem;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 14px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+
+  .welcome-icon:hover {
+    transform: rotate(20deg) scale(1.1);
+  }
+
+  /* ------------ Stats Cards ------------ */
+.stats-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between; /* spreads them evenly */
+  flex-wrap: nowrap; /* keeps them in one row */
+}
+
+.stat-card {
+  flex: 1; /* makes all cards equal width */
+  min-width: 190px;
+  max-width: 250px; /* optional for consistency */
+  background: #fff;
+  padding: 22px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideFromBottom 0.8s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+
+  /* Fancy gradient border with mask (cross-browser) */
+  .stat-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    padding: 2px;
+    background: linear-gradient(135deg, #0077ff, #00c6ff);
+
+    /* ✅ Vendor prefix for WebKit */
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+
+    /* ✅ Standard property for Firefox */
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+
+    pointer-events: none;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.15);
+  }
+
+  .stat-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    color: #0077ff;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+
+  .stat-change {
+    font-size: 0.85rem;
+    font-weight: bold;
+  }
+
+  /* Card Borders (backup for older browsers) */
+  .blue { border-left: 5px solid #0077ff; }
+  .green { border-left: 5px solid #28a745; }
+  .purple { border-left: 5px solid #6f42c1; }
+  .orange { border-left: 5px solid #fd7e14; }
+
+  /* ------------ Pipeline Section ------------ */
+  .pipeline {
+    background: #fff;
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    animation: slideFromBottom 1s ease-in-out;
+  }
+
+  .pipeline h2 {
+    margin-bottom: 18px;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .pipeline-stages {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .stage {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+    background: #f8f9fa;
+    padding: 16px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .stage span {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #0077ff;
+  }
+
+  .stage:hover {
+    background: #e6f2ff;
+    transform: scale(1.05);
+  }
+
+  /* ------------ Animations ------------ */
+  @keyframes slideFromLeft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+
+  @keyframes slideFromTop {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes slideFromBottom {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes glowLine {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+
+  /* ------------ Responsive ------------ */
+  @media (max-width: 992px) {
+    .dashboard-container {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      order: 2;
+    }
+
+    .main-dashboard {
+      order: 1;
+      padding: 20px;
+    }
+  }
