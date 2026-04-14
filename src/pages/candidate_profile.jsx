@@ -171,26 +171,33 @@ const CandidateProfile = () => {
     });
     setProfile(defaults);
 
-    const loadSavedCandidate = async () => {
-      try {
-        const resumeFileName = localStorage.getItem('resumeFileName');
-        if (resumeFileName) {
-          console.log('[CandidateProfile] Found resumeFileName in localStorage:', resumeFileName);
-          const candidate = await fetchCandidateByResume(resumeFileName);
-          if (candidate) {
-            console.log('[CandidateProfile] Loaded candidate:', candidate);
-            setProfile(normalizeCandidate(candidate));
-            return;
-          } else {
-            console.log('[CandidateProfile] No candidate found for resumeFileName');
-          }
-        } else {
-          console.log('[CandidateProfile] No resumeFileName in localStorage');
-        }
-      } catch (err) {
-        console.error('[CandidateProfile] loadSavedCandidate error:', err);
+   const loadSavedCandidate = async () => {
+
+  try {
+
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+    if (user?.userId) {
+
+      console.log("Loading resumes for userId:", user.userId);
+
+      const resumes = await fetchCandidateByResume(user.userId);
+
+      if (resumes.length > 0) {
+
+        setProfile(normalizeCandidate(resumes[0]));
+
       }
-    };
+
+    }
+
+  } catch (err) {
+
+    console.error("loadSavedCandidate error:", err);
+
+  }
+
+};
 
     loadSavedCandidate();
 
@@ -385,73 +392,105 @@ const saveProfile = async () => {
 
 
 // Fetch candidate by resumeFileName (backend endpoint)
-const fetchCandidateByResume = async (resumeFileName) => {
-  if (!resumeFileName) {
-    console.warn('[CandidateProfile] fetchCandidateByResume called without resumeFileName');
-    return null;
+const fetchCandidateByResume = async (userId) => {
+
+  if (!userId) {
+    console.warn('[CandidateProfile] fetchCandidateByResume called without userId');
+    return [];
   }
 
   try {
-    console.log('[CandidateProfile] Fetching candidate with resumeFileName:', resumeFileName);
+
+    console.log('[CandidateProfile] Fetching resumes for userId:', userId);
 
     const resp = await fetch(
-      `http://localhost:8080/api/resume/candidateByResume?resumeFileName=${encodeURIComponent(resumeFileName)}`,
-      { method: 'GET', headers: { Accept: 'application/json' } }
+      `http://localhost:8080/api/resume/candidateByResume/${userId}`,
+      {
+        method: 'GET',
+        headers: { Accept: 'application/json' }
+      }
     );
 
     if (!resp.ok) {
-      console.warn('[CandidateProfile] candidateByResume returned status', resp.status);
-      return null;
+      console.warn('[CandidateProfile] API returned status', resp.status);
+      return [];
     }
 
     const data = await resp.json();
-    if (!data || Object.keys(data).length === 0) return null;
 
-    const parsed = {
-      ...data,
-      skills: Array.isArray(data.skills)
-        ? data.skills
-        : typeof data.skills === 'string'
-        ? data.skills.split(',').map(s => s.trim()).filter(Boolean)
-        : [],
-      portfolioSamples: Array.isArray(data.portfolioSamples)
-        ? data.portfolioSamples
-        : typeof data.portfolioSamples === 'string'
-        ? parsePortfolioString(data.portfolioSamples)
-        : [],
-      academicProjects: Array.isArray(data.academicProjects)
-        ? data.academicProjects
-        : typeof data.academicProjects === 'string'
-        ? parseProjectsString(data.academicProjects)
-        : [],
-      jobs: Array.isArray(data.jobs)
-        ? data.jobs
-        : typeof data.jobs === 'string'
-        ? parseJobsString(data.jobs)
-        : [],
-      education: Array.isArray(data.education)
-        ? data.education
-        : typeof data.education === 'string'
-        ? parseEducationString(data.education)
-        : [],
-      trainingsCourses: Array.isArray(data.trainingsCourses) ? data.trainingsCourses : [],
-    };
+    if (!Array.isArray(data) || data.length === 0) {
+      console.warn('[CandidateProfile] No resumes found');
+      return [];
+    }
 
-    return parsed;
+    const parsedResumes = data.map((item) => ({
+      ...item,
+
+      skills: Array.isArray(item.skills)
+        ? item.skills
+        : typeof item.skills === 'string'
+        ? item.skills.split(',').map(s => s.trim()).filter(Boolean)
+        : [],
+
+      portfolioSamples: Array.isArray(item.portfolioSamples)
+        ? item.portfolioSamples
+        : typeof item.portfolioSamples === 'string'
+        ? parsePortfolioString(item.portfolioSamples)
+        : [],
+
+      academicProjects: Array.isArray(item.academicProjects)
+        ? item.academicProjects
+        : typeof item.academicProjects === 'string'
+        ? parseProjectsString(item.academicProjects)
+        : [],
+
+      jobs: Array.isArray(item.jobs)
+        ? item.jobs
+        : typeof item.jobs === 'string'
+        ? parseJobsString(item.jobs)
+        : [],
+
+      education: Array.isArray(item.education)
+        ? item.education
+        : typeof item.education === 'string'
+        ? parseEducationString(item.education)
+        : [],
+
+      trainingsCourses: Array.isArray(item.trainingsCourses)
+        ? item.trainingsCourses
+        : []
+    }));
+
+    return parsedResumes;
+
   } catch (err) {
+
     console.error('[CandidateProfile] fetchCandidateByResume error:', err);
-    return null;
+    return [];
+
   }
 };
 
 // ✅ Optional: fetch saved candidate on page load
 useEffect(() => {
-  const resumeFileName = localStorage.getItem('resumeFileName');
-  if (resumeFileName) {
-    fetchCandidateByResume(resumeFileName).then((candidate) => {
-      if (candidate) setProfile(normalizeCandidate(candidate));
+
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+
+  if (user?.userId) {
+
+    fetchCandidateByResume(user.userId).then((resumes) => {
+
+      if (resumes.length > 0) {
+
+        // show latest resume
+        setProfile(normalizeCandidate(resumes[0]));
+
+      }
+
     });
+
   }
+
 }, []);
 
 

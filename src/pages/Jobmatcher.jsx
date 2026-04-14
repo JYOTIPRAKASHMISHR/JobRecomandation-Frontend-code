@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import "./Jobmatcher.css";
 import CandidateDashboardHeader from "../component/CandidateDashboardHeader";
 
@@ -11,6 +11,15 @@ function Jobmatcher() {
   const [email, setEmail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [appliedJobs, setAppliedJobs] = useState([]);
+
+
+
+  useEffect(() => {
+    const storedApplied = JSON.parse(localStorage.getItem("appliedJobs")) || [];
+    setAppliedJobs(storedApplied);
+  }, []);
+
 
   // Load user from localStorage
   useEffect(() => {
@@ -90,6 +99,12 @@ function Jobmatcher() {
   // APPLY JOB
   const handleApply = async (job) => {
 
+
+    const updated = [...appliedJobs, job.id];
+    setAppliedJobs(updated);
+    localStorage.setItem("appliedJobs", JSON.stringify(updated));
+
+
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user) {
@@ -123,7 +138,12 @@ function Jobmatcher() {
 
       alert(`✅ Successfully applied for ${job.jobTitle}`);
 
+
+    
+      setAppliedJobs(prev => [...prev, job.id]);
+
       // Remove applied job from UI
+      setJobs(prev => prev.filter(j => j.id !== job.id));
       setFilteredJobs(prev => prev.filter(j => j.id !== job.id));
 
     } catch (error) {
@@ -216,8 +236,9 @@ function Jobmatcher() {
 
 
 
-          <p className="count">{filteredJobs.length} jobs found</p>
-
+        <p className="count">
+  {filteredJobs.filter(job => !appliedJobs.includes(job.id)).length} jobs found
+</p>
 
 
           {/* JOB LIST */}
@@ -226,9 +247,11 @@ function Jobmatcher() {
 
             {filteredJobs.length > 0 ? (
 
-              filteredJobs.map((job, i) => (
+            filteredJobs
+        .filter(job => !appliedJobs.includes(job.id))
+        .map((job) => (
 
-                <div key={i} className="job-card">
+                <div key={job.id} className="job-card">
 
                   <div className="job-header">
 
