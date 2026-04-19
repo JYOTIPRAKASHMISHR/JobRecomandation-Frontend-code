@@ -10,7 +10,7 @@ function Application() {
 
     
   const user = JSON.parse(localStorage.getItem("user"));
-  const username = user?.name || "User";
+  const fullName = user?`${user.firstName} ${user.lastName}` : "User";
 
   // ✅ Smooth scroll
   useEffect(() => {
@@ -60,7 +60,7 @@ function Application() {
         experienceLevel: app.job?.experienceLevel,
         skills: app.job?.skills,
         postedDate: app.job?.postedDate,
-        similarity: app.job?.similarity,
+        similarity: app.similarity,
         // appliedDate: app.appliedDate
       }));
 
@@ -88,6 +88,29 @@ function Application() {
 
     return title.includes(query) || company.includes(query);
   });
+
+
+  const handelDelete = async (jobId) => {
+    try {
+      const response = await fetch (` http://localhost:8080/api/applications/delete/${jobId} `, {
+        method: "DELETE"
+      });
+
+      if(!response.ok){
+        throw new Error (`HTTP ${response.status}`);
+
+      }
+
+
+      const update = appliedJobs.filter(job=>job.id !== jobId);
+      setAppliedJobs(update);
+      localStorage.setItem("appliedJobs", JSON.stringify(update));
+      alert("✅ Application removed successfully!");
+    } catch (error) {
+      console.error("❌ Error deleting application:", error);
+      alert("⚠️ Failed to delete application. Please try again.");
+    }
+  };
 
   return (
     <div className="jobmatcher-container">
@@ -127,64 +150,105 @@ function Application() {
           ) : (
 
             filteredJobs.map((job) => (
+<div className="job-card" key={job.id}>
 
-              <div className="job-card" key={job.id}>
+  <div className="job-card-header">
+    <div>
+      <h3>{job.jobTitle}</h3>
+      <p className="company-name">{job.companyName}</p>
+    </div>
 
-                <div className="job-card-header">
+    <span className="job-type-badge">
+      {job.jobType}
+    </span>
+  </div>
 
-                  <div>
-                    <h3>{job.jobTitle || "No Title"}</h3>
-                    <p className="company-name">{job.companyName || "No Company"}</p>
-                  </div>
+  <div className="job-info">
+    <p>👤 {fullName}</p>
+    <p>📍 {job.location}</p>
+  </div>
 
-                  <span className="job-type-badge">
-                    {job.jobType || "Full-time"}
-                  </span>
+  <div className="job-meta">
+    <p>💼 {job.experienceLevel}</p>
+    <p>🧠 {job.skills}</p>
+    <p>🕓 {job.postedDate ? new Date(job.postedDate).toLocaleDateString() : "N/A"}</p>
+  </div>
 
-                </div>
+  {/* ✅ SALARY + PROGRESS SECTION */}
+  <div className="salary-score">
 
-                <div className="job-info">
-                  
-                  <p>👤 <strong>{username || "User"}</strong></p>
-                  <p>📍 {job.location || "Not specified"}</p>
-                  {/* <p>📅 Applied on: {job.appliedDate || "N/A"}</p> */}
-                </div>
+    <p className="salary">
+      ₹{job.salaryMin} - ₹{job.salaryMax} LPA
+    </p>
 
-                <div className="job-meta">
-                  <p>💼 Experience: {job.experienceLevel || "N/A"}</p>
-                  <p>🧠 Skills: {job.skills || "N/A"}</p>
-                  <p>
-                    🕓 Posted:{" "}
-                    {job.postedDate
-                      ? new Date(job.postedDate).toLocaleDateString()
-                      : "N/A"}
-                  </p>
-                </div>
+    <div className="circular-wrapper">
 
-                <div className="salary-score">
-                  <p>💰 ₹{job.salaryMin || 0} - ₹{job.salaryMax || 0} LPA</p>
-                  <p>
-                    📊 Match Score:{" "}
-                    {job.similarity
-                      ? (job.similarity * 100).toFixed(1)
-                      : 0}%
-                  </p>
-                </div>
+      <svg className="progress-ring" width="80" height="80">
 
-                <div className="job-description">
-                  <p>{job.description || "No description available."}</p>
-                </div>
+        <defs>
+          <linearGradient id={`gradient-${job.id}`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#22c55e" />
+            <stop offset="50%" stopColor="#3b82f6" />
+            <stop offset="100%" stopColor="#6366f1" />
+          </linearGradient>
+        </defs>
 
-                <div className="job-footer">
-                  <button
-                    className="delete-btn"
-                    onClick={() => handleDelete(job.id)}
-                  >
-                    🗑️ Remove
-                  </button>
-                </div>
+        {/* Background */}
+        <circle
+          cx="40"
+          cy="40"
+          r="30"
+          stroke="#e5e7eb"
+          strokeWidth="6"
+          fill="none"
+        />
 
-              </div>
+        {/* Progress */}
+        <circle
+          cx="40"
+          cy="40"
+          r="30"
+          stroke={`url(#gradient-${job.id})`}
+          strokeWidth="6"
+          fill="none"
+          strokeDasharray={2 * Math.PI * 30}
+          strokeDashoffset={
+            2 * Math.PI * 30 * (1 - (job.similarity ? job.similarity : 0))
+          }
+          strokeLinecap="round"
+          style={{
+            transition: "stroke-dashoffset 0.6s ease"
+          }}
+        />
+
+      </svg>
+
+      {/* ✅ CENTER TEXT */}
+      <div className="progress-text">
+        {job.similarity ? (job.similarity * 100).toFixed(0) : 0}%
+      </div>
+
+    </div>
+
+  </div>
+
+  {/* ✅ DESCRIPTION */}
+  <div className="job-description">
+    {job.description}
+  </div>
+
+  {/* ✅ FOOTER */}
+  <div className="job-footer">
+    <button onClick={() => handelDelete(job.id)} className="delete-btn">
+      Remove
+    </button>
+  </div>
+
+</div>
+
+
+
+             
 
             ))
 

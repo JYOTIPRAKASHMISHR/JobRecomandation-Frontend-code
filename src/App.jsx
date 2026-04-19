@@ -12,6 +12,7 @@ import RecruiterProfile from "./pages/recruiter_progile.jsx";
 import Postjob from './pages/Postjob';
 import Application from './pages/Application';
 import Jobmatcher from './pages/Jobmatcher';
+import CandidateList from './pages/candidatelist';
 
 
 
@@ -19,8 +20,23 @@ function AppContent() {
   const location = useLocation();
 
   // Hide Header on register and login routes
-  const hideHeader = ['/register', '/login','/candidate-dashboard','/candidate-profile','/recruiter-dashboard','/profile-recruiter','/post-job','/job-matches','/applications'].includes(location.pathname);
+const hideHeaderRoutes = [
+  '/register',
+  '/login',
+  '/candidate-dashboard',
+  '/candidate-profile',
+  '/recruiter-dashboard',
+  '/profile-recruiter',
+  '/post-job',
+  '/job-matches',
+  '/applications'
+];
 
+const hideHeader =
+  hideHeaderRoutes.includes(location.pathname) ||
+  location.pathname.startsWith('/candidates');
+
+  
   return (
     <div className="app-container">
       {!hideHeader && <Header />}
@@ -35,6 +51,8 @@ function AppContent() {
         <Route path="/post-job" element={<Postjob />} />
         <Route path="/job-matches" element={<Jobmatcher />} />  
         <Route path="/applications" element={<Application />} />  
+        <Route path="/candidates/:jobId" element={<CandidateList />} />
+        
 
       </Routes>
     </div>

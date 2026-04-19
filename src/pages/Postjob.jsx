@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Recruiter from "./Recruiter";
 import "./postjob.css";
+import { useNavigate } from "react-router-dom";
 import {
   FaMapMarkerAlt,
   FaClock,
@@ -8,6 +9,8 @@ import {
   FaEdit,
   FaTrash,
 } from "react-icons/fa";
+
+
 
 const Postjob = () => {
   const [showModal, setShowModal] = useState(false);
@@ -25,7 +28,7 @@ const Postjob = () => {
     skills: "",
     description: "",
   });
-
+  const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -180,6 +183,11 @@ const Postjob = () => {
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     return diffDays === 0 ? "Today" : `${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
   };
+  const handleViewCandidates = (jobId) => {
+  navigate(`/candidates/${jobId}`);
+};
+
+  
 
   return (
     <div className="postjob-page">
@@ -372,7 +380,43 @@ const Postjob = () => {
             <div className="actions">
               <button onClick={() => handleEdit(job)}><FaEdit /></button>
               <button onClick={() => handleDelete(job.id)}><FaTrash /></button>
+
+              <button
+  onClick={() => handleViewCandidates(job.id)}
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    background: "linear-gradient(135deg, #4CAF50, #2e7d32)",
+    color: "#fff",
+    border: "none",
+    padding: "8px 14px",
+    marginTop: "8px",
+    fontSize: "13px",
+    fontWeight: "500",
+    borderRadius: "8px",
+    cursor: "pointer",
+    transition: "0.3s",
+  }}
+  onMouseOver={(e) => {
+    e.currentTarget.style.transform = "translateY(-2px)";
+    e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.15)";
+  }}
+  onMouseOut={(e) => {
+    e.currentTarget.style.transform = "translateY(0)";
+    e.currentTarget.style.boxShadow = "none";
+  }}
+  onMouseDown={(e) => {
+    e.currentTarget.style.transform = "scale(0.95)";
+  }}
+  onMouseUp={(e) => {
+    e.currentTarget.style.transform = "translateY(-2px)";
+  }}
+>
+  👁 View Candidates
+</button>
             </div>
+
             <span className="date-badge">{getDaysAgo(job.postedDate)}</span>
           </div>
         </div>

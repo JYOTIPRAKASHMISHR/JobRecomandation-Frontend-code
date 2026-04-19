@@ -26,6 +26,9 @@ const Recruiter = () => {
 const handleDahboard=()=>{
   navigate("/recruiter-dashboard");
 };
+// const handelcandidateprofile = ()=>{
+//   navigate("/candidates/${jobId}"); // route path for candidate list page with jobId parameter
+// };
   return (
     <header className="navbar">
       {/* Left - Logo */}
@@ -42,9 +45,9 @@ const handleDahboard=()=>{
           <li onClick={handlePostjob} style={{ cursor: "pointer" }}>
             <FaPlus /> Post a Job
           </li>
-          <li>
+          {/* <li onClick={handelcandidateprofile} style={{ cursor: "pointer" }}>
             <FaUserFriends /> Candidates
-          </li>
+          </li> */}
           <li>
             <FaStar /> Shortlist
           </li>

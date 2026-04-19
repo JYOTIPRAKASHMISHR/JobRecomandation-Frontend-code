@@ -116,6 +116,7 @@ function Jobmatcher() {
   jobId: job.id,
   recruiterId: job.recruiterId,
   userId: user.userId,
+  similarity: job.similarity ?? 0
 };
 
     try {
@@ -297,13 +298,16 @@ function Jobmatcher() {
 
 
 
-                  <div className="similarity">
+                 <div className="similarity">
+  Match Score: {(job.similarity * 100).toFixed(1)}%
 
-                    🔍 Match Score:
-
-                    <strong> {(job.similarity * 100).toFixed(1)}%</strong>
-
-                  </div>
+  <div className="similarity-bar">
+    <div
+      className="similarity-fill"
+      style={{ width: `${job.similarity * 100}%` }}
+    ></div>
+  </div>
+</div>
 
 
 

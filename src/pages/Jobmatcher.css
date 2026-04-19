@@ -1,33 +1,272 @@
-/* 🌐 Base Styling */ body { font-family:"Inter",sans-serif; background-color:#f4f6fa; margin:0; color:#2c3e50; } .jobmatcher-container { width:100%; min-height:100vh; }
+/* 🌐 GLOBAL */
+body {
+  margin: 0;
+  font-family: "Inter", "Poppins", sans-serif;
+  background: linear-gradient(135deg, #eef2ff, #f8fbff);
+  color: #1e293b;
+}
 
-/* 🏠 Dashboard Layout */ .dashboard { display:flex; justify-content:center; align-items:flex-start; width:100%; padding:30px 40px; background-color:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.05); box-sizing:border-box; } .main { flex:1; max-width:1100px; width:100%; }
+/* 🌐 CONTAINER */
+.jobmatcher-container {
+  min-height: 100vh;
+}
 
-/* 🧭 Headings */ .main h2 { font-size:1.9rem; font-weight:700; color:#0d47a1; margin-bottom:8px; } .subtitle { color:#6c757d; font-size:1rem; margin-bottom:20px; } .count { margin-top:10px; font-weight:600; color:#495057; }
+/* 🏠 DASHBOARD */
+.dashboard {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
 
-/* 🔍 Filter Bar */ .filter-bar { background:#fff; padding:14px 18px; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,0.05); margin:20px 0; display:flex; align-items:center; gap:12px; flex-wrap:wrap; width:100%; max-width:1100px; } .search-box { flex:1; padding:10px 12px; border:1px solid #dce1f1; border-radius:8px; outline:none; font-size:0.95rem; transition:border-color 0.3s ease; } .search-box:focus { border-color:#1976d2; } .filter-toggle-btn { background:#1976d2; color:#fff; border:none; padding:9px 16px; border-radius:8px; font-size:0.9rem; font-weight:500; cursor:pointer; transition:all 0.3s ease; } .filter-toggle-btn:hover { background:#1565c0; transform:translateY(-1px); }
+.main {
+  width: 100%;
+  max-width: 1200px;
+}
 
-/* 🧩 Dropdown Filters */ .filters { display:none; flex-direction:column; gap:8px; width:100%; margin-top:8px; } .filters.show { display:flex; } .filters select { padding:9px 12px; border-radius:8px; border:1px solid #dce1f1; background:#f8f9fb; cursor:pointer; color:#333; font-size:0.9rem; transition:all 0.3s ease; } .filters select:hover { background:#e3f2fd; border-color:#90caf9; } .filters select:focus { border-color:#1976d2; }
+/* 🧭 HEADER */
+.main h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+}
 
-/* 💼 Job Grid */ .job-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:18px; margin-top:10px; }
+.subtitle {
+  text-align: center;
+  color: #64748b;
+  margin-top: 8px;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
 
-/* 🧾 Job Card */ .job-card { background:#fff; padding:20px; border-radius:16px; box-shadow:0 3px 10px rgba(0,0,0,0.05); transition:all 0.25s ease; border:1px solid #e8edf5; display:flex; flex-direction:column; gap:10px; overflow:hidden; min-height:180px; } .job-card:hover { transform:translateY(-4px); box-shadow:0 6px 18px rgba(25,118,210,0.12); border-color:#cfdaf5; }
+/* 🔍 SEARCH + FILTER */
+.filter-bar {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 14px 18px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
 
-/* 📄 Job Header */ .job-header { display:flex; justify-content:space-between; align-items:center; } .job-header h3 { color:#0d47a1; font-size:1.1rem; font-weight:700; margin:0; } .job-type { background:#e3f2fd; color:#0d47a1; padding:4px 9px; border-radius:6px; font-size:0.78rem; font-weight:600; }
+.search-box {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.3s;
+}
 
-/* 🏢 Company & Details */ .company-name { color:#546e7a; font-size:0.9rem; font-weight:500; } .job-location { color:#607d8b; font-size:0.88rem; } .posted-date { color:#757575; font-size:0.8rem; font-style:italic; display:inline-block; }
+.search-box:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.2);
+}
 
-/* 📜 Job Description */ .job-description { color:#455a64; font-size:0.88rem; line-height:1.45; margin-top:4px; max-height:60px; overflow:hidden; text-overflow:ellipsis; }
+/* 🔘 FILTER BUTTON */
+.filter-toggle-btn {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-/* 🧩 Meta Info */ .job-meta { display:flex; justify-content:space-between; align-items:center; font-size:0.88rem; color:#2c3e50; font-weight:500; }
+.filter-toggle-btn:hover {
+  transform: translateY(-2px);
+}
 
-/* 🧠 Skills */ .job-skills { margin-top:6px; display:flex; flex-wrap:wrap; gap:6px; } .skill-tag { background:#e3f2fd; color:#1565c0; padding:5px 12px; border-radius:16px; font-size:0.78rem; font-weight:500; transition:all 0.25s ease; } .skill-tag:hover { background:#1565c0; color:#fff; transform:scale(1.05); }
+/* 📊 COUNT */
+.count {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #475569;
+}
 
-/* 🔍 Match Similarity */ .similarity { font-size:0.85rem; color:#1b5e20; font-weight:600; }
+/* 🧩 GRID */
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 22px;
+}
 
-/* ⚙️ Footer Row */ .card-footer { margin-top:4px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #edf2f7; padding-top:8px; }
+/* 📦 CARD */
+.job-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  border: 1px solid #eef2f7;
+  transition: 0.3s;
+  position: relative;
+}
 
-/* 🟦 Apply Button */ .apply-btn { background:linear-gradient(135deg,#42a5f5,#1976d2); color:#fff; border:none; border-radius:20px; padding:8px 18px; font-size:0.9rem; font-weight:600; cursor:pointer; transition:all 0.3s ease; box-shadow:0 3px 8px rgba(25,118,210,0.2); margin-left:auto; } .apply-btn:hover { background:linear-gradient(135deg,#1976d2,#0d47a1); transform:translateY(-2px) scale(1.04); box-shadow:0 5px 12px rgba(25,118,210,0.3); }
+.job-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(99, 102, 241, 0.2);
+}
 
-/* 📅 Date + Button Inline */ .date-btn-wrapper { display:flex; justify-content:space-between; align-items:center; width:100%; }
+/* 🏷 HEADER */
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-/* 📱 Responsive */ @media(max-width:768px){.dashboard{padding:16px;}.main{width:100%;}.filter-bar{flex-direction:column;align-items:stretch;}.job-grid{grid-template-columns:1fr;}.job-card{padding:18px;min-height:auto;}.apply-btn{width:auto;font-size:1rem;padding:10px 20px;margin-left:auto;}}
+.job-header h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.job-type {
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* 🏢 COMPANY */
+.company-name {
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* 📍 LOCATION */
+.job-location {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+/* 📜 DESCRIPTION (FIXED UI) */
+.job-description {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.5;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;   /* 🔥 clean truncation */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 🧾 META */
+.job-meta {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.job-meta span:first-child {
+  color: #334155;
+}
+
+.job-meta span:last-child {
+  color: #16a34a;
+}
+
+/* 🧠 SKILLS */
+.job-skills {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  transition: 0.3s;
+}
+
+.skill-tag:hover {
+  background: #4338ca;
+  color: white;
+}
+
+/* 🔥 MATCH SCORE (PROGRESS BAR) */
+.similarity {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.similarity-bar {
+  margin-top: 6px;
+  height: 8px;
+  border-radius: 10px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.similarity-fill {
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #22c55e, #3b82f6, #6366f1);
+  transition: width 0.6s ease;
+}
+
+/* 🕒 FOOTER */
+.card-footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.posted-date {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* 🚀 APPLY BUTTON */
+.apply-btn {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.apply-btn:hover {
+  transform: scale(1.05);
+}
+
+/* 🚫 EMPTY */
+.no-jobs {
+  text-align: center;
+  color: #64748b;
+  font-size: 1rem;
+  margin-top: 40px;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+  }
+
+  .job-grid {
+    grid-template-columns: 1fr;
+  }
+}
