@@ -251,14 +251,160 @@ function CandidateList() {
         )}
 
       </div>
-       {selectedCandidate && (
-            <div className="modal">
-              <h2>{selectedCandidate.name}</h2>
-              <p>Email: {selectedCandidate.email}</p>
-              <p>Skills: {selectedCandidate.skills}</p>
-              <button onClick={() => setSelectedCandidate(null)}>Close</button>
-            </div>
-          )}  
+      {selectedCandidate && (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background: "rgba(0,0,0,0.6)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 999,
+    }}
+  >
+    <div
+      style={{
+        width: "600px",
+        maxHeight: "90vh",
+        overflowY: "auto",
+        background: "#fff",
+        borderRadius: "12px",
+        padding: "25px",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+        position: "relative",
+      }}
+    >
+
+      {/* ❌ Close Button */}
+      <button
+        onClick={() => setSelectedCandidate(null)}
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "15px",
+          border: "none",
+          background: "transparent",
+          fontSize: "20px",
+          cursor: "pointer",
+        }}
+      >
+        ✖
+      </button>
+
+      {/* 👤 HEADER */}
+      <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+        <div
+          style={{
+            width: "60px",
+            height: "60px",
+            borderRadius: "50%",
+            background: "#007bff",
+            color: "#fff",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "24px",
+            fontWeight: "bold",
+          }}
+        >
+          {selectedCandidate.name
+            ? selectedCandidate.name.charAt(0).toUpperCase()
+            : "U"}
+        </div>
+
+        <div>
+          <h2 style={{ margin: 0 }}>
+            {selectedCandidate.name || "No Name"}
+          </h2>
+          <p style={{ margin: "5px 0", color: "gray" }}>
+            {selectedCandidate.email || "N/A"}
+          </p>
+        </div>
+      </div>
+
+      <hr style={{ margin: "20px 0" }} />
+
+      {/* 📞 CONTACT */}
+      <div style={{ marginBottom: "15px" }}>
+        <h4>Contact</h4>
+        <p><strong>Phone:</strong> {selectedCandidate.phone || "N/A"}</p>
+      </div>
+
+      {/* 🧠 SKILLS */}
+      <div style={{ marginBottom: "15px" }}>
+        <h4>Skills</h4>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+          {selectedCandidate.skills
+            ? selectedCandidate.skills.split(",").map((skill, i) => (
+                <span
+                  key={i}
+                  style={{
+                    background: "#e3f2fd",
+                    color: "#007bff",
+                    padding: "5px 10px",
+                    borderRadius: "20px",
+                    fontSize: "12px",
+                  }}
+                >
+                  {skill.trim()}
+                </span>
+              ))
+            : "N/A"}
+        </div>
+      </div>
+
+      {/* 🎯 OBJECTIVE */}
+      <div style={{ marginBottom: "15px" }}>
+        <h4>Career Objective</h4>
+        <p style={{ lineHeight: "1.6" }}>
+          {selectedCandidate.careerObjective || "N/A"}
+        </p>
+      </div>
+
+      {/* 🎓 EDUCATION */}
+      <div style={{ marginBottom: "15px" }}>
+        <h4>Education</h4>
+        <p>{selectedCandidate.graduation || "N/A"}</p>
+        <p>{selectedCandidate.secondaryEducation || ""}</p>
+      </div>
+
+      {/* 💼 EXPERIENCE */}
+      <div style={{ marginBottom: "15px" }}>
+        <h4>Experience</h4>
+        <p>{selectedCandidate.jobs || "N/A"}</p>
+      </div>
+
+      {/* 🚀 PROJECTS */}
+      <div style={{ marginBottom: "15px" }}>
+  <h4>Projects</h4>
+
+  {selectedCandidate.academicProjects ? (
+    selectedCandidate.academicProjects.split(";").map((project, index) => (
+      <div
+        key={index}
+        style={{
+          background: "#f8f9fa",
+          padding: "10px",
+          borderRadius: "8px",
+          marginBottom: "10px",
+          borderLeft: "4px solid #007bff",
+        }}
+      >
+        {project.trim()}
+      </div>
+    ))
+  ) : (
+    <p>N/A</p>
+  )}
+</div>
+
+    </div>
+  </div>
+)}
 
 
     </div>
