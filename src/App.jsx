@@ -14,6 +14,9 @@ import Application from './pages/Application';
 import Jobmatcher from './pages/Jobmatcher';
 import CandidateList from './pages/candidatelist';
 
+import ShortlistedCandidates from './pages/ShortlistedCandidates';
+
+
 
 
 function AppContent() {
@@ -29,7 +32,9 @@ const hideHeaderRoutes = [
   '/profile-recruiter',
   '/post-job',
   '/job-matches',
-  '/applications'
+  '/applications',
+  '/shortlisted'
+  
 ];
 
 const hideHeader =
@@ -52,6 +57,8 @@ const hideHeader =
         <Route path="/job-matches" element={<Jobmatcher />} />  
         <Route path="/applications" element={<Application />} />  
         <Route path="/candidates/:jobId" element={<CandidateList />} />
+        <Route path="/shortlisted" element={<ShortlistedCandidates />} />
+
         
 
       </Routes>

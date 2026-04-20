@@ -51,11 +51,7 @@ function CandidateList() {
     return name.includes(query) || skills.includes(query);
   });
 
-  // ✅ Actions
-  const handleShortlist = (id) => {
-    alert("✅ Candidate shortlisted: " + id);
-  };
-
+  
   const handleReject = (id) => {
     alert("❌ Candidate rejected: " + id);
   };
@@ -99,6 +95,36 @@ function CandidateList() {
 
   } catch (error) {
     console.error(error);
+  }
+};
+
+const handleShortlist = async (id) => {
+  try {
+    const response = await fetch(
+      `http://localhost:8080/api/applications/${id}/shortlist`,
+      {
+        method: "PUT",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to shortlist");
+    }
+
+    alert("✅ Candidate shortlisted!");
+
+    // ✅ Update UI without reload
+    setCandidates((prev) =>
+      prev.map((c) =>
+        c.applicationId === id
+          ? { ...c, status: "SHORTLISTED" }
+          : c
+      )
+    );
+
+  } catch (error) {
+    console.error(error);
+    alert("❌ Error while shortlisting");
   }
 };
 

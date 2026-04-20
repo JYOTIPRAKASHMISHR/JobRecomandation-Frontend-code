@@ -48,7 +48,7 @@ const handleDahboard=()=>{
           {/* <li onClick={handelcandidateprofile} style={{ cursor: "pointer" }}>
             <FaUserFriends /> Candidates
           </li> */}
-          <li>
+          <li onClick={() => navigate("/shortlisted")} style={{ cursor: "pointer" }}>
             <FaStar /> Shortlist
           </li>
           <li>
