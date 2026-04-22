@@ -73,11 +73,16 @@ function Jobmatcher() {
         const data = await response.json();
 
         // Filter jobs above 50% similarity
-        const highMatchScoreJobs = data.filter(job => job.similarity >= 0.5);
+        // ✅ GET applied job IDs from localStorage
+const storedApplied = JSON.parse(localStorage.getItem("appliedJobs")) || [];
 
-        setJobs(highMatchScoreJobs);
-        setFilteredJobs(highMatchScoreJobs);
+// ✅ FILTER BOTH CONDITIONS
+const highMatchScoreJobs = data
+  .filter(job => job.similarity >= 0.5)
+  .filter(job => !storedApplied.includes(Number(job.id))) // 🔥 REMOVE APPLIED
 
+setJobs(highMatchScoreJobs);
+setFilteredJobs(highMatchScoreJobs);
       } catch (error) {
 
         console.error("❌ Error fetching jobs:", error);
@@ -97,64 +102,50 @@ function Jobmatcher() {
 
 
   // APPLY JOB
-  const handleApply = async (job) => {
+ const handleApply = async (job) => {
+  const user = JSON.parse(localStorage.getItem("user"));
 
+  if (!user) {
+    alert("⚠️ Please login first!");
+    return;
+  }
 
-    const updated = [...appliedJobs, job.id];
-    setAppliedJobs(updated);
-    localStorage.setItem("appliedJobs", JSON.stringify(updated));
-
-
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    if (!user) {
-      alert("⚠️ Please login first!");
-      return;
-    }
-
-    const payload = {
-  jobId: job.id,
-  recruiterId: job.recruiterId,
-  userId: user.userId,
-  similarity: job.similarity ?? 0
-};
-
-    try {
-
-      const response = await fetch("http://localhost:8080/api/applications/applyy", {
-
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify(payload)
-
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
-
-      alert(`✅ Successfully applied for ${job.jobTitle}`);
-
-
-    
-      setAppliedJobs(prev => [...prev, job.id]);
-
-      // Remove applied job from UI
-      setJobs(prev => prev.filter(j => j.id !== job.id));
-      setFilteredJobs(prev => prev.filter(j => j.id !== job.id));
-
-    } catch (error) {
-
-      console.error("❌ Error applying:", error);
-      alert("❌ Failed to apply for job");
-
-    }
-
+  const payload = {
+    jobId: job.id,
+    recruiterId: job.recruiterId,
+    userId: user.userId,
+    similarity: job.similarity ?? 0
   };
+
+  try {
+    const response = await fetch("http://localhost:8080/api/applications/applyy", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    // ✅ ONLY update after success
+  const updated = [...new Set([...appliedJobs, Number(job.id)])];
+setAppliedJobs(updated);
+localStorage.setItem("appliedJobs", JSON.stringify(updated));
+
+    alert(`✅ Successfully applied for ${job.jobTitle}`);
+
+    // ✅ Remove from UI
+    setJobs(prev => prev.filter(j => j.id !== job.id));
+    setFilteredJobs(prev => prev.filter(j => j.id !== job.id));
+
+  } catch (error) {
+    console.error("❌ Error applying:", error);
+    alert("❌ Failed to apply for job");
+  }
+};
 
 
 
@@ -238,7 +229,7 @@ function Jobmatcher() {
 
 
         <p className="count">
-  {filteredJobs.filter(job => !appliedJobs.includes(job.id)).length} jobs found
+  {filteredJobs.filter(job => !appliedJobs.includes(Number(job.id))).length} jobs found
 </p>
 
 

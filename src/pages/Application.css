@@ -305,3 +305,56 @@ body {
   color: #64748b;
   margin-top: 30px;
 }
+
+.status-tracker {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  position: relative;
+  font-size: 12px;
+}
+
+.status-tracker::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #e5e7eb;
+  z-index: 0;
+}
+
+.status-tracker span {
+  background: #fff;
+  padding: 4px 8px;
+  border-radius: 20px;
+  border: 2px solid #ccc;
+  z-index: 1;
+  transition: 0.3s;
+}
+
+.status-tracker span.active {
+  border-color: #22c55e;
+  color: #22c55e;
+  font-weight: 600;
+  transform: scale(1.1);
+}
+
+.interview-box {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #eef2ff;
+  border: 1px solid #6366f1;
+}
+
+.join-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 12px;
+  background: #4f46e5;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}

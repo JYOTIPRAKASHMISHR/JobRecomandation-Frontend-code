@@ -34,6 +34,7 @@ function Application() {
 
   // ✅ Load from localStorage
   useEffect(() => {
+    const appliedLocal = JSON.parse(localStorage.getItem("appliedJobs")) || [];
     const fetchApplicaions = async () => {
       try{
         const user = JSON.parse(localStorage.getItem("user"));
@@ -62,6 +63,11 @@ function Application() {
         postedDate: app.job?.postedDate,
         similarity: app.similarity,
         // appliedDate: app.appliedDate
+
+         status: app.status,
+         interviewDate: app.interviewDate,
+         interviewLink: app.interviewLink,
+         isAppliedLocal: appliedLocal.includes(app.job?.id)
       }));
 
       setAppliedJobs(jobs);
@@ -104,7 +110,8 @@ function Application() {
 
       const update = appliedJobs.filter(job=>job.id !== jobId);
       setAppliedJobs(update);
-      localStorage.setItem("appliedJobs", JSON.stringify(update));
+     const updatedIds = update.map(j => j.jobId);
+     localStorage.setItem("appliedJobs", JSON.stringify(updatedIds));
       alert("✅ Application removed successfully!");
     } catch (error) {
       console.error("❌ Error deleting application:", error);
@@ -236,6 +243,53 @@ function Application() {
   <div className="job-description">
     {job.description}
   </div>
+
+  <div className="status-tracker">
+
+  <span className={(job.isAppliedLocal || job.status === "APPLIED") ? "active" : ""}>
+    Applied
+  </span>
+
+  <span className={job.status === "SHORTLISTED" ? "active" : ""}>
+    Shortlisted
+  </span>
+
+  <span className={job.status === "INTERVIEW" ? "active" : ""}>
+    Interview
+  </span>
+
+  <span className={job.status === "HIRED" ? "active" : ""}>
+    Hired
+  </span>
+
+  <span className={job.status === "OFFERED" ? "active" : ""}>
+    Offer
+  </span>
+
+</div>
+
+{job.status === "INTERVIEW" && (
+  <div className="interview-box">
+    <h4>🎥 Interview Scheduled</h4>
+
+    <p>
+      📅 {job.interviewDate
+        ? new Date(job.interviewDate).toLocaleString()
+        : "Not Scheduled"}
+    </p>
+
+    {job.interviewLink && (
+      <a
+        href={job.interviewLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="join-btn"
+      >
+        🔗 Join Interview
+      </a>
+    )}
+  </div>
+)}
 
   {/* ✅ FOOTER */}
   <div className="job-footer">

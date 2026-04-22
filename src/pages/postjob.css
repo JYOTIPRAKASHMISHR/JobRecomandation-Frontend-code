@@ -1,378 +1,223 @@
-/* 🌈 GLOBAL STYLES */
-body {
-  font-family: "Inter", sans-serif;
-  background: linear-gradient(135deg, #f3f9ff, #e9f5ff);
-  margin: 0;
-  padding: 0;
-  color: #222;
-  transition: background 0.5s ease;
-}
-
-/* 🧩 PAGE CONTAINER */
-.postjob-page {
+/* 🌐 WRAPPER */
+.dashboard-wrapper {
+  background: #f4f7fb;
   min-height: 100vh;
-  padding: 20px;
+  font-family: "Inter", sans-serif;
 }
 
-.postjob-container {
-  margin-top: 30px;
+/* 🧩 LAYOUT */
+.dashboard {
   display: flex;
-  justify-content: flex-end;
-  padding: 0 40px;
 }
 
-/* ➕ POST JOB BUTTON */
-.post-job-btn {
-  background: linear-gradient(135deg, #007bff, #00b4d8);
-  color: #fff;
-  border: none;
-  padding: 12px 28px;
-  font-size: 16px;
+/* 📌 SIDEBAR */
+.sidebar {
+  width: 250px;
+  background: linear-gradient(180deg, #0d47a1, #1565c0);
+  color: white;
+  padding: 20px;
+  height: 100vh;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
   font-weight: 600;
+}
+
+.job-item {
+  padding: 12px;
   border-radius: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
-  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.25);
   transition: all 0.3s ease;
 }
 
-.post-job-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgba(0, 123, 255, 0.35);
-  background: linear-gradient(135deg, #0066cc, #0096c7);
+.job-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+}
+
+/* 📄 MAIN */
+.main-content {
+  flex: 1;
+  padding: 30px;
+}
+
+/* 🔝 TOP BAR */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-btn {
+  background: linear-gradient(135deg, #007bff, #00b4d8);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.post-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 123, 255, 0.3);
+}
+
+/* 📊 TABLE */
+.job-table {
+  margin-top: 20px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+/* ✅ FIXED GRID (6 columns now including DATE) */
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+  padding: 15px;
+  align-items: center;
+}
+
+.table-header {
+  background: #f1f5f9;
+  font-weight: 600;
+  color: #333;
+}
+
+.table-row {
+  border-top: 1px solid #eee;
+  transition: 0.3s;
+}
+
+.table-row:hover {
+  background: #f9fbff;
+  transform: scale(1.01);
+}
+
+/* 🎯 ACTION BUTTONS */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  background: #f1f5f9;
+  transition: 0.3s;
+}
+
+.actions button:hover {
+  background: #007bff;
+  color: white;
+}
+
+/* 📅 DATE BADGE */
+.date-badge {
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
 }
 
 /* 💬 MODAL OVERLAY */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0,0,0,0.55);
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn 0.3s ease;
   z-index: 1000;
-  animation: fadeInBg 0.3s ease-in-out;
 }
 
-/* 💬 MODAL CONTENT */
-.modal-content {
-  background: #fff;
-  padding: 35px 40px;
+/* 💬 MODAL BOX (single definition only) */
+.modal-box {
+  background: white;
+  padding: 30px;
+  width: 500px;
   border-radius: 16px;
-  width: 600px;
-  max-width: 95%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  animation: slideUp 0.35s ease-in-out;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-.modal-content h2 {
-  text-align: center;
-  color: #0077b6;
-  font-size: 22px;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
+/* 🧾 FORM */
 .job-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-}
-
-.job-form label {
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
+  gap: 12px;
 }
 
 .job-form input,
 .job-form select,
 .job-form textarea {
-  margin-top: 6px;
   padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
   border-radius: 8px;
-  outline: none;
-  background: #f9f9f9;
-  transition: border 0.3s, box-shadow 0.3s;
+  border: 1px solid #ddd;
+  transition: 0.3s;
 }
 
 .job-form input:focus,
 .job-form select:focus,
 .job-form textarea:focus {
-  border-color: #00b4d8;
-  box-shadow: 0 0 8px rgba(0, 180, 216, 0.4);
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.3);
+  outline: none;
 }
 
-/* 💰 SALARY RANGE */
-.salary-range {
+/* 💰 SALARY ROW */
+.salary-row {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
-.salary-range input {
-  flex: 1;
-}
-
-/* 💬 MODAL BUTTONS */
+/* 🔘 MODAL BUTTONS */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 10px;
 }
 
 .modal-actions button {
-  padding: 10px 18px;
+  padding: 8px 14px;
   border: none;
   border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s;
 }
 
 .modal-actions button:first-child {
-  background: #dee2e6;
-  color: #333;
-}
-
-.modal-actions button:first-child:hover {
-  background: #adb5bd;
+  background: #e2e8f0;
 }
 
 .modal-actions button:last-child {
   background: linear-gradient(135deg, #007bff, #00b4d8);
-  color: #fff;
+  color: white;
 }
 
-.modal-actions button:last-child:hover {
+.modal-actions button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 180, 216, 0.4);
 }
 
 /* ✨ ANIMATIONS */
-@keyframes fadeInBg {
+@keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(40px); opacity: 0; }
+  from { transform: translateY(30px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
-}
-
-/* 📋 POSTED JOBS CONTAINER */
-.posted-jobs-container {
-  margin-top: 60px;
-  padding: 40px;
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
-}
-
-.posted-jobs-container:hover {
-  transform: translateY(-3px);
-}
-
-.posted-jobs-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-}
-
-.posted-jobs-header h2 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #023e8a;
-}
-
-.jobs-count {
-  background: #caf0f8;
-  color: #0077b6;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 600;
-  box-shadow: inset 0 0 5px rgba(0, 119, 182, 0.2);
-}
-
-/* 💼 JOB CARD GRID — 4 per row */
-.job-card-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  justify-items: center;
-  align-items: stretch;
-  padding: 20px;
-}
-
-/* 💼 JOB CARD */
-.job-card {
-  background: #ffffff;
-  border: 1px solid #e3f2fd;
-  border-radius: 18px;
-  padding: 22px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  transition: all 0.35s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.job-card:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  transform: translateY(-6px);
-}
-
-/* 📄 JOB INFO */
-.job-card-left {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.job-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #0d47a1;
-}
-
-.company-name {
-  font-size: 15px;
-  color: #444;
-}
-
-.job-info {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  color: #555;
-  font-size: 14px;
-}
-
-.job-info span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: #e3f2fd;
-  padding: 5px 10px;
-  border-radius: 8px;
-  color: #1976d2;
-  font-weight: 500;
-}
-
-.salary {
-  font-size: 15px;
-  font-weight: 600;
-  color: #00796b;
-  margin: 6px 0;
-}
-
-.skills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.skill {
-  background: #f0f4f8;
-  color: #0277bd;
-  padding: 4px 9px;
-  border-radius: 6px;
-  font-size: 13px;
-  transition: background 0.3s;
-}
-
-.skill:hover {
-  background: #bbdefb;
-}
-
-.description {
-  font-size: 14px;
-  color: #333;
-  line-height: 1.5;
-}
-
-/* 🎯 JOB CARD FOOTER */
-.job-card-right {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 12px;
-}
-
-.actions {
-  display: flex;
-  gap: 8px;
-  background: #fff;
-  border-radius: 10px;
-  padding: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.actions button {
-  background: #f5f5f5;
-  border: none;
-  border-radius: 8px;
-  padding: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  color: #777;
-  transition: all 0.3s ease;
-}
-
-.actions button:hover {
-  background: #1976d2;
-  color: #fff;
-  transform: translateY(-2px);
-}
-
-.date-badge {
-  background: #e3f2fd;
-  color: #1565c0;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 20px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.date-badge.today {
-  background: #ffeadb;
-  color: #f77f00;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-/* 📱 RESPONSIVE DESIGN */
-@media (max-width: 1200px) {
-  .job-card-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
-  .job-card-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .job-card-container {
-    grid-template-columns: repeat(1, 1fr);
-  }
 }
