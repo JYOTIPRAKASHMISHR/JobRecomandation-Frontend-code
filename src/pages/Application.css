@@ -6,7 +6,7 @@ body {
 }
 
 /* 🌐 MAIN CONTAINER */
-.jobmatcher-container {
+.jobmatcher-container1 {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
@@ -16,8 +16,8 @@ body {
 }
 
 /* ✨ FLOATING BLOBS (PROFESSIONAL EFFECT) */
-.jobmatcher-container::before,
-.jobmatcher-container::after {
+.jobmatcher-container1::before,
+.jobmatcher-container1::after {
   content: "";
   position: absolute;
   width: 500px;
@@ -29,14 +29,14 @@ body {
 }
 
 /* 🔵 BLUE GLOW */
-.jobmatcher-container::before {
+.jobmatcher-container1::before {
   background: radial-gradient(circle, #6366f1, #3b82f6);
   top: -100px;
   left: -100px;
 }
 
 /* 🟢 GREEN GLOW */
-.jobmatcher-container::after {
+.jobmatcher-container1::after {
   background: radial-gradient(circle, #22c55e, #06b6d4);
   bottom: -120px;
   right: -120px;
@@ -50,7 +50,7 @@ body {
 }
 
 /* ✨ OPTIONAL GRID LINES (SUBTLE TECH LOOK) */
-.jobmatcher-container::marker {
+.jobmatcher-container1::marker {
   display: none;
 }
 

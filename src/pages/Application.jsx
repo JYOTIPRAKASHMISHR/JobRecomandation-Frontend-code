@@ -120,7 +120,7 @@ function Application() {
   };
 
   return (
-    <div className="jobmatcher-container">
+    <div className="jobmatcher-container1">
 
       <CandidateDashboardHeader />
 
