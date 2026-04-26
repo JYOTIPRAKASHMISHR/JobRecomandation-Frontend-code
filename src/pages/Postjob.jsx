@@ -109,7 +109,7 @@ const Postjob = () => {
       <div className="dashboard">
 
         {/* SIDEBAR */}
-        <div className="sidebar">
+        <div className="sidebar1">
           <h2>Your Jobs</h2>
 
           {jobs.map((job) => (

@@ -358,3 +358,27 @@ body {
   border-radius: 6px;
   text-decoration: none;
 }
+
+
+.offer-box {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid #22c55e;
+  text-align: center;
+}
+
+.offer-download-btn {
+  margin-top: 8px;
+  background: #22c55e;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.offer-download-btn:hover {
+  background: #16a34a;
+}

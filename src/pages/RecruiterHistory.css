@@ -1,0 +1,77 @@
+.history-page {
+  padding: 30px;
+  background: #0f172a;
+  min-height: 100vh;
+  color: white;
+}
+
+.history-page h1 {
+  margin-bottom: 20px;
+}
+
+/* FILTER */
+.filters {
+  margin-bottom: 20px;
+}
+
+.filters button {
+  margin-right: 10px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #1e293b;
+  color: white;
+  cursor: pointer;
+}
+
+.filters button:hover {
+  background: #3b82f6;
+}
+
+/* TABLE */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e293b;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.history-table th,
+.history-table td {
+  padding: 12px;
+  text-align: center;
+}
+
+.history-table th {
+  background: #020617;
+}
+
+.history-table tr:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* STATUS COLORS */
+.status.HIRED {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.status.REJECTED {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* OFFER BUTTON */
+.offer-btn {
+  background: #22c55e;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.offer-btn:hover {
+  background: #16a34a;
+}

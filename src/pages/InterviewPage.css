@@ -1,0 +1,213 @@
+/* 🌌 PAGE */
+.interview-page {
+  padding: 30px;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  min-height: 100vh;
+  color: white;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.interview-page h1 {
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* 📦 GRID */
+.interview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* 🧊 CARD (Glass Effect) */
+.interview-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  padding: 22px;
+  border-radius: 18px;
+  text-align: center;
+  transition: all 0.35s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+.interview-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(14px);
+  padding: 22px;
+  border-radius: 18px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  position: relative;
+  overflow: hidden;
+
+  transition: all 0.35s ease;
+}
+
+/* 🔥 Glow layer (fixed + safe) */
+.interview-card::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* better than width/height */
+  background: radial-gradient(circle at top left, rgba(59,130,246,0.25), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+
+  pointer-events: none; /* ✅ important */
+  z-index: 0;
+}
+
+/* ✨ Inner shine effect */
+.interview-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent);
+  opacity: 0;
+  transition: 0.5s;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 🚀 Hover effects */
+.interview-card:hover::before {
+  opacity: 1;
+}
+
+.interview-card:hover::after {
+  opacity: 1;
+}
+
+.interview-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.25);
+}
+
+/* ✅ Content always above glow */
+.interview-card * {
+  position: relative;
+  z-index: 2;
+}
+
+/* 👤 AVATAR */
+.avatar {
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* 📄 TEXT */
+.job {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.date {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #cbd5f5;
+}
+
+/* 🚦 STATUS */
+.status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+   pointer-events: auto;
+}
+
+.status.INTERVIEW {
+  background: #facc15;
+  color: black;
+}
+
+.status.HIRED {
+  background: #22c55e;
+}
+
+.status.REJECTED {
+  background: #ef4444;
+}
+
+/* 🎮 ACTIONS */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+/* 🔘 BUTTON BASE */
+.actions button {
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 13px;
+  transition: all 0.25s ease;
+}
+
+/* 🟢 HIRE */
+.actions .hire1 {
+  background: #73bc2f;
+  color: rgb(15, 15, 15);
+  padding: 8px 14px;
+}
+
+.hire1:hover {
+  background: #16a34a;
+  transform: scale(1.05);
+}
+
+/* 🔵 INTERVIEW (CENTER MAIN BUTTON) */
+.actions .interview {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+  padding: 10px 18px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(59,130,246,0.4);
+}
+
+.interview:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(59,130,246,0.6);
+}
+
+/* 🔴 REJECT */
+.actions .reject1 {
+  background: #c03838;
+  color: rgb(11, 11, 11);
+  padding: 8px 14px;
+}
+
+.reject1:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}
+
+/* ✨ ANIMATIONS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -26,6 +26,13 @@ const Recruiter = () => {
 const handleDahboard=()=>{
   navigate("/recruiter-dashboard");
 };
+const interviews=()=>{
+  navigate("/interviews");
+}
+
+const history=()=>{
+  navigate("/recruiter-history");
+}
 // const handelcandidateprofile = ()=>{
 //   navigate("/candidates/${jobId}"); // route path for candidate list page with jobId parameter
 // };
@@ -51,8 +58,11 @@ const handleDahboard=()=>{
           <li onClick={() => navigate("/shortlisted")} style={{ cursor: "pointer" }}>
             <FaStar /> Shortlist
           </li>
-          <li>
-            <FaCalendarAlt /> Interviews
+          <li onClick={interviews} style={{ cursor: "pointer" }}>
+            <FaCalendarAlt  /> Interviews
+          </li>
+          <li onClick={history} style={{ cursor: "pointer" }}>
+             History
           </li>
           <li>
             <FaSignOutAlt /> Logout

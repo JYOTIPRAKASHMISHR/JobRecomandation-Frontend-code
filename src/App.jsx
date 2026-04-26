@@ -15,6 +15,8 @@ import Jobmatcher from './pages/Jobmatcher';
 import CandidateList from './pages/candidatelist';
 
 import ShortlistedCandidates from './pages/ShortlistedCandidates';
+import InterviewPage from './pages/InterviewPage';
+import RecruiterHistory from './pages/RecruiterHistory.jsx';
 
 
 
@@ -33,7 +35,9 @@ const hideHeaderRoutes = [
   '/post-job',
   '/job-matches',
   '/applications',
-  '/shortlisted'
+  '/shortlisted',
+  '/interviews',
+  '/recruiter-history'
   
 ];
 
@@ -58,6 +62,8 @@ const hideHeader =
         <Route path="/applications" element={<Application />} />  
         <Route path="/candidates/:jobId" element={<CandidateList />} />
         <Route path="/shortlisted" element={<ShortlistedCandidates />} />
+        <Route path="/interviews" element={<InterviewPage />} />
+        <Route path="/recruiter-history" element={<RecruiterHistory />} />
 
         
 

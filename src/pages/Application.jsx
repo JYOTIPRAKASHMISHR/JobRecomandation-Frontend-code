@@ -258,13 +258,13 @@ function Application() {
     Interview
   </span>
 
-  <span className={job.status === "HIRED" ? "active" : ""}>
-    Hired
-  </span>
-
   <span className={job.status === "OFFERED" ? "active" : ""}>
-    Offer
-  </span>
+  Offer
+</span>
+
+<span className={job.status === "REJECTED" ? "rejected" : ""}>
+  Rejected
+</span>
 
 </div>
 
@@ -288,6 +288,23 @@ function Application() {
         🔗 Join Interview
       </a>
     )}
+  </div>
+)}
+{job.status === "OFFERED" && (
+  <div className="offer-box">
+    <h4>🎉 Offer Received</h4>
+
+    <button
+      className="offer-download-btn"
+      onClick={() =>
+        window.open(
+          `http://localhost:8080/api/applications/offer/${job.id}`,
+          "_blank"
+        )
+      }
+    >
+      📄 Download Offer Letter
+    </button>
   </div>
 )}
 
