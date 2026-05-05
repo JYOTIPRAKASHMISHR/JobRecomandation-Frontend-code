@@ -1,0 +1,228 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #f4f7fb;
+}
+
+/* MAIN */
+.main-container {
+  padding: 20px 40px;
+}
+
+/* HEADER */
+.page-title {
+  color: #fff;
+  background: linear-gradient(90deg, #1f3c88, #2b4da1);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* UPLOAD BOX */
+.upload-box {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+/* CARD */
+.upload-card {
+  background: white;
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.upload-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ICON */
+.upload-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+.upload-text {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* FILE BUTTON */
+.upload-btn {
+  display: inline-block;
+  background: #eef2ff;
+  color: #2b4da1;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  background: #dbe4ff;
+}
+
+/* FILE NAME */
+.file-name {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+/* ANALYZE BUTTON */
+.analyze-btn {
+  margin-top: 20px;
+  width: 100%;
+  background: linear-gradient(90deg, #2b4da1, #1f3c88);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.analyze-btn:hover {
+  opacity: 0.9;
+}
+
+/* GRID */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* LEFT */
+.left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* SCORE BOX */
+.score-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.score-number {
+  font-size: 36px;
+  font-weight: bold;
+  color: #2b4da1;
+}
+
+.score-number span {
+  font-size: 16px;
+  color: gray;
+}
+
+.score-status {
+  color: green;
+  font-weight: bold;
+}
+
+/* PROGRESS */
+.progress-card {
+  background: white;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #eee;
+  border-radius: 10px;
+  margin: 6px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  border-radius: 10px;
+}
+
+/* RIGHT */
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* CARDS */
+.card-box {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.highlight-box {
+  background: #f0f5ff;
+}
+
+/* SKILLS */
+.skills-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.good {
+  color: green;
+  font-weight: bold;
+}
+
+.bad {
+  color: red;
+  font-weight: bold;
+}
+
+ul {
+  padding-left: 18px;
+}
+
+
+.circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+}
+
+circle {
+  fill: none;
+  stroke-width: 10;
+}
+
+.bg {
+  stroke: #eee;
+}
+
+.progress {
+  stroke: #00c853;
+  stroke-dasharray: 314;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.circle-text {
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  font-size: 22px;
+  font-weight: bold;
+}

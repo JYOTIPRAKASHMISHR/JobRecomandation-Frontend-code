@@ -18,6 +18,10 @@ import ShortlistedCandidates from './pages/ShortlistedCandidates';
 import InterviewPage from './pages/InterviewPage';
 import RecruiterHistory from './pages/RecruiterHistory.jsx';
 
+import ResumeAnalyzer from "./pages/ResumeAnalyzer";
+
+import SkillsGap from "./pages/SkillsGap";
+
 
 
 
@@ -37,8 +41,9 @@ const hideHeaderRoutes = [
   '/applications',
   '/shortlisted',
   '/interviews',
-  '/recruiter-history'
-  
+  '/recruiter-history',
+  '/resume-analyzer',
+  '/skills-gap'
 ];
 
 const hideHeader =
@@ -64,7 +69,8 @@ const hideHeader =
         <Route path="/shortlisted" element={<ShortlistedCandidates />} />
         <Route path="/interviews" element={<InterviewPage />} />
         <Route path="/recruiter-history" element={<RecruiterHistory />} />
-
+        <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
+        <Route path="/skills-gap" element={<SkillsGap />} />
         
 
       </Routes>

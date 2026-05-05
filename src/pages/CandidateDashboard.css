@@ -116,7 +116,7 @@
 
 /* ========== Buttons ========== */
 .analyze-button,
-.find-jobs-button {
+.find-jobs-button1 {
   padding: 12px 24px;
   font-size: 16px;
   border-radius: 6px;
@@ -135,7 +135,7 @@
   transform: scale(1.05);
 }
 
-.find-jobs-button {
+.find-jobs-button1 {
   background-color: #ffffff;
   color: #333333;
   border: 1px solid #cccccc;

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import "./CandidateDashboard.css";
 import CandidateDashboardHeader from "../component/CandidateDashboardHeader";
 import DashBoardFooter from "../component/dash_boardfooter";
+import { link } from "framer-motion/client";
+
 
 const features = [
   {
@@ -11,18 +13,21 @@ const features = [
     title: "AI Resume Analysis",
     description:
       "Advanced AI analyzes your resume structure, content, and formatting to provide detailed insights and improvement suggestions.",
+      link: "/resume-analyzer" 
   },
   {
     icon: "🟩",
     title: "Smart Job Matching",
     description:
       "Our intelligent algorithm matches your skills and experience with relevant job opportunities from top companies.",
+     link: "/job-matches" 
   },
   {
     icon: "📈",
     title: "Skills Gap Analysis",
     description:
       "Identify missing skills and get personalized recommendations to improve your career prospects.",
+      link: "/skills-gap"
   },
   {
     icon: "📄",
@@ -91,7 +96,7 @@ const CandidateDashboard = () => {
               <button className="analyze-button">🚀 Analyze My Resume</button>
             </Link>
             <Link to="/job-matches">
-              <button className="find-jobs-button">🔍 Find Jobs</button>
+              <button className="find-jobs-button1">🔍 Find Jobs</button>
             </Link>
           </div>
         </div>
@@ -106,11 +111,14 @@ const CandidateDashboard = () => {
         </p>
         <div className="features-grid">
           {features.map((feature, index) => (
-            <div className="feature-card" key={index}>
+            <Link to={feature.link || "#"} key={index} style={{ textDecoration: "none", color: "inherit" }} >
+            <div className="feature-card" >
               <div className="feature-icon">{feature.icon}</div>
               <h3 className="feature-title">{feature.title}</h3>
               <p className="feature-description">{feature.description}</p>
             </div>
+            </Link>
+            
           ))}
         </div>
       </section>

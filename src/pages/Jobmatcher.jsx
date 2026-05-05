@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Jobmatcher.css";
 import CandidateDashboardHeader from "../component/CandidateDashboardHeader";
+import { useNavigate } from "react-router-dom";
 
 function Jobmatcher() {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [username, setUsername] = useState(null);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [appliedJobs, setAppliedJobs] = useState([]);
@@ -106,6 +108,8 @@ function Jobmatcher() {
     return <div className="loading">Loading Jobs...</div>;
   }
 
+  
+
   return (
     <div className="jobmatcher-container">
       <CandidateDashboardHeader />
@@ -148,7 +152,19 @@ function Jobmatcher() {
                 </div>
                 <span>{(job.similarity * 100).toFixed(0)}%</span>
               </div>
-
+                  <button
+  onClick={() =>
+    navigate("/skills-gap", {
+      state: {
+        jobTitle: job.jobTitle,
+        skills: job.skills,
+         job: job   
+      }
+    })
+  }
+>
+  Analyze Skill Gap 📈
+</button>
               <button onClick={() => handleApply(job)}>
                 Apply Now 🚀
               </button>
